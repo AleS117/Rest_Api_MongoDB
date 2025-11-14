@@ -1,86 +1,53 @@
-import {Lote} from "../models/Lote.js"
+import { Lote } from "../models/Lote.js";
 
-const crear=async(req,res,next)=>{
-    const datos=req.body
-    console.log(datos)
-    const clientes=new cliente(datos)
-    try{
-        await clientes.save()
-        res.json({
-            mensaje:"Se creo el Lote"
-        })
-    }catch(error){
-        res.send(error)
-        next()
-    }
-    
-}
+const crear = async (req, res, next) => {
+    const datos = req.body;
+    const lote = new Lote(datos);
 
-const consulta=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.find({})
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
+    try {
+        await lote.save();
+        res.json({ mensaje: "Se creó el lote" });
+    } catch (error) {
+        console.log(error);
+        next();
     }
-    
-}
-const consultaId=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.findById(req.params.id)
-        if(!clientes){
-            res.json({
-                mensaje:"El Lote no existe"
-            })
-            next
-        }
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const actualizar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndUpdate({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const eliminar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndDelete({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
+};
 
-export{
+const consulta = async (req, res, next) => {
+    try {
+        const lotes = await Lote.find({});
+        res.json(lotes);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const editar = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        await Lote.findByIdAndUpdate(id, req.body);
+        res.json({ mensaje: "Lote actualizado" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const eliminar = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        await Lote.findByIdAndDelete(id);
+        res.json({ mensaje: "Lote eliminado" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+export const ApiL = {
     crear,
     consulta,
-    consultaId,
-    actualizar,
+    editar,
     eliminar
-}
+};

@@ -1,86 +1,55 @@
-import {Compra} from "../models/Compra.js"
+import { Compra } from "../models/Compra.js";
 
-const crear=async(req,res,next)=>{
-    const datos=req.body
-    console.log(datos)
-    const clientes=new cliente(datos)
-    try{
-        await clientes.save()
-        res.json({
-            mensaje:"Se creo la Compra"
-        })
-    }catch(error){
-        res.send(error)
-        next()
-    }
-    
-}
+const crear = async (req, res, next) => {
+    const datos = req.body;
+    const compra = new Compra(datos);
 
-const consulta=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.find({})
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
+    try {
+        await compra.save();
+        res.json({ mensaje: "Se creó la compra" });
+    } catch (error) {
+        console.log(error);
+        next();
     }
-    
-}
-const consultaId=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.findById(req.params.id)
-        if(!clientes){
-            res.json({
-                mensaje:"La compra no existe"
-            })
-            next
-        }
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const actualizar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndUpdate({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const eliminar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndDelete({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
+};
 
-export{
+const consulta = async (req, res, next) => {
+    try {
+        const compras = await Compra.find({});
+        res.json(compras);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const editar = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        await Compra.findByIdAndUpdate(id, req.body);
+        res.json({ mensaje: "Compra actualizada" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const eliminar = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        await Compra.findByIdAndDelete(id);
+        res.json({ mensaje: "Compra eliminada" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+export const ApiC = {
     crear,
     consulta,
-    consultaId,
-    actualizar,
+    editar,
     eliminar
-}
+};

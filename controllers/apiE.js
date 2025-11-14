@@ -1,86 +1,55 @@
-import {Especie} from "../models/Especie.js"
+import { Especie } from "../models/Especie.js";
 
-const crear=async(req,res,next)=>{
-    const datos=req.body
-    console.log(datos)
-    const clientes=new cliente(datos)
-    try{
-        await clientes.save()
-        res.json({
-            mensaje:"Se agrego la Especie"
-        })
-    }catch(error){
-        res.send(error)
-        next()
-    }
-    
-}
+const crear = async (req, res, next) => {
+    const datos = req.body;
+    const especie = new Especie(datos);
 
-const consulta=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.find({})
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
+    try {
+        await especie.save();
+        res.json({ mensaje: "Se creó la especie" });
+    } catch (error) {
+        console.log(error);
+        next();
     }
-    
-}
-const consultaId=async(req,res,next)=>{
-          
-    try{
-        const clientes=await cliente.findById(req.params.id)
-        if(!clientes){
-            res.json({
-                mensaje:"La Especie no existe"
-            })
-            next
-        }
-        res.json(clientes)
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const actualizar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndUpdate({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
-const eliminar=async(req,res,next)=>{
-          
-    try{
-        console.log(req.params.id)
-        const clientes=await cliente.findByIdAndDelete({_id:req.params.id},
-            req.body,{
-                new:true
-            })
-            res.json(clientes)
-       
-    }catch(error){
-         res.send(error)
-        next()
-    }
-    
-}
+};
 
-export{
+const consulta = async (req, res, next) => {
+    try {
+        const especies = await Especie.find({});
+        res.json(especies);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const editar = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        await Especie.findByIdAndUpdate(id, req.body);
+        res.json({ mensaje: "Especie actualizada" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const eliminar = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        await Especie.findByIdAndDelete(id);
+        res.json({ mensaje: "Especie eliminada" });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+export const ApiE = {
     crear,
     consulta,
-    consultaId,
-    actualizar,
+    editar,
     eliminar
-}
+};

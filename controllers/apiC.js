@@ -46,10 +46,23 @@ const eliminar = async (req, res, next) => {
         next();
     }
 };
+const comprasPorComprador = async (req, res, next) => {
+    const { id } = req.params; // ID del comprador
 
-export const ApiC = {
+    try {
+        const compras = await Compras.find({ codigo_cpr: id });
+        res.json(compras);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+export {
     crear,
     consulta,
-    editar,
-    eliminar
+    consultaId,
+    actualizar,
+    eliminar,
+    comprasPorComprador
 };

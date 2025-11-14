@@ -1,55 +1,32 @@
 import { Comprador } from "../models/Comprador.js";
+import { Compra } from "../models/Compra.js";
 
-const crear = async (req, res, next) => {
-    const datos = req.body;
-    const comprador = new Comprador(datos);
+const login = async (req, res, next) => {
+    const { correo, password } = req.body;
 
     try {
-        await comprador.save();
-        res.json({ mensaje: "Se creó el comprador" });
+        const comprador = await Comprador.findOne({ correo });
+
+        if (!comprador) {
+            return res.status(404).json({
+                mensaje: "Correo no encontrado"
+            });
+        }
+
+        if (comprador.password !== password) {
+            return res.status(400).json({
+                mensaje: "Contraseña incorrecta"
+            });
+        }
+
+        res.json({
+            mensaje: "Login correcto",
+            id: comprador._id,
+            nombre: comprador.nombre
+        });
+
     } catch (error) {
         console.log(error);
         next();
     }
-};
-
-const consulta = async (req, res, next) => {
-    try {
-        const compradores = await Comprador.find({});
-        res.json(compradores);
-    } catch (error) {
-        console.log(error);
-        next();
-    }
-};
-
-const editar = async (req, res, next) => {
-    const { id } = req.params;
-
-    try {
-        await Comprador.findByIdAndUpdate(id, req.body);
-        res.json({ mensaje: "Comprador actualizado" });
-    } catch (error) {
-        console.log(error);
-        next();
-    }
-};
-
-const eliminar = async (req, res, next) => {
-    const { id } = req.params;
-
-    try {
-        await Comprador.findByIdAndDelete(id);
-        res.json({ mensaje: "Comprador eliminado" });
-    } catch (error) {
-        console.log(error);
-        next();
-    }
-};
-
-export const ApiCm = {
-    crear,
-    consulta,
-    editar,
-    eliminar
 };

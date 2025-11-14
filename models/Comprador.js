@@ -29,11 +29,13 @@ const CompradorSchema = new Schema({
         trim: true,
         lowercase: true,
         unique: true
+    },
+    password: {
+        type: String,
+        trim: true
     }
 });
 
 const Comprador = mongoose.model("Comprador", CompradorSchema);
 
-export {
-    Comprador
-}
+export { Comprador }

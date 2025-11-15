@@ -1,12 +1,22 @@
-import express from "express"
-import { crear, consulta, consultaId, actualizar, eliminar } from "../controllers/apiC.js"
+import express from "express";
+import {
+    crear,
+    consulta,
+    consultaId,
+    actualizar,
+    eliminar,
+    comprasPorComprador
+} from "../controllers/apiC.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/crear", crear)
-router.get("/consulta", consulta)
-router.get("/consulta/:id", consultaId)
-router.put("/actualizar/:id", actualizar)
-router.delete("/eliminar/:id", eliminar)
+router.post("/crear", crear);
+router.get("/consulta", consulta);
+router.get("/consulta/:id", consultaId);
+router.put("/actualizar/:id", actualizar);
+router.delete("/eliminar/:id", eliminar);
 
-export default router
+// Compras realizadas por un comprador
+router.get("/comprador/:id", comprasPorComprador);
+
+export default router;

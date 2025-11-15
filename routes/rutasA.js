@@ -1,4 +1,4 @@
-import express from "express"
+import express from "express";
 import {
     crear,
     consulta,
@@ -6,17 +6,17 @@ import {
     actualizar,
     eliminar,
     login
-} from "../controllers/apiA.js"
+} from "../controllers/apiA.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/crear", crear)
-router.get("/consulta", consulta)
-router.get("/consulta/:id", consultaId)
-router.put("/actualizar/:id", actualizar)
-router.delete("/eliminar/:id", eliminar)
+router.post("/crear", crear);
+router.get("/consulta", consulta);
+router.get("/consulta/:id", consultaId);
+router.put("/actualizar/:id", actualizar);
+router.delete("/eliminar/:id", eliminar);
 
 // LOGIN ADMINISTRADOR
-router.post("/login", login)
+router.post("/login", login);
 
-export default router
+export default router;

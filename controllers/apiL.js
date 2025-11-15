@@ -1,15 +1,13 @@
 import { Lote } from "../models/Lote.js";
 
 const crear = async (req, res, next) => {
-    const datos = req.body;
-    const lote = new Lote(datos);
-
     try {
+        const lote = new Lote(req.body);
         await lote.save();
         res.json({ mensaje: "Se creó el lote" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
@@ -19,35 +17,45 @@ const consulta = async (req, res, next) => {
         res.json(lotes);
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
+    }
+};
+
+// Faltaba
+const consultaId = async (req, res, next) => {
+    try {
+        const lote = await Lote.findById(req.params.id);
+        res.json(lote);
+    } catch (error) {
+        console.log(error);
+        next(error);
     }
 };
 
 const editar = async (req, res, next) => {
-    const { id } = req.params;
     try {
-        await Lote.findByIdAndUpdate(id, req.body);
+        await Lote.findByIdAndUpdate(req.params.id, req.body);
         res.json({ mensaje: "Lote actualizado" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
 const eliminar = async (req, res, next) => {
-    const { id } = req.params;
     try {
-        await Lote.findByIdAndDelete(id);
+        await Lote.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Lote eliminado" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
 export const ApiL = {
     crear,
     consulta,
+    consultaId,
     editar,
     eliminar
 };

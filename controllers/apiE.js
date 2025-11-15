@@ -1,15 +1,13 @@
 import { Especie } from "../models/Especie.js";
 
 const crear = async (req, res, next) => {
-    const datos = req.body;
-    const especie = new Especie(datos);
-
     try {
+        const especie = new Especie(req.body);
         await especie.save();
         res.json({ mensaje: "Se creó la especie" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
@@ -19,37 +17,45 @@ const consulta = async (req, res, next) => {
         res.json(especies);
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
+    }
+};
+
+// Faltaba
+const consultaId = async (req, res, next) => {
+    try {
+        const especie = await Especie.findById(req.params.id);
+        res.json(especie);
+    } catch (error) {
+        console.log(error);
+        next(error);
     }
 };
 
 const editar = async (req, res, next) => {
-    const { id } = req.params;
-
     try {
-        await Especie.findByIdAndUpdate(id, req.body);
+        await Especie.findByIdAndUpdate(req.params.id, req.body);
         res.json({ mensaje: "Especie actualizada" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
 const eliminar = async (req, res, next) => {
-    const { id } = req.params;
-
     try {
-        await Especie.findByIdAndDelete(id);
+        await Especie.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Especie eliminada" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
 export const ApiE = {
     crear,
     consulta,
+    consultaId,
     editar,
     eliminar
 };

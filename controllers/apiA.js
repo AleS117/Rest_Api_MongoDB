@@ -1,86 +1,92 @@
 import { Administrador } from "../models/Administrador.js";
+import crypto from "crypto";
+import { correoRegistro } from "../helpers/correoRegistro.js";
 
-// Crear admin
 const crear = async (req, res, next) => {
     try {
         const admin = new Administrador(req.body);
+
+        admin.token = crypto.randomBytes(20).toString("hex");
         await admin.save();
-        res.json({ mensaje: "Administrador creado" });
+
+        await correoRegistro({
+            nombre: admin.usuario,
+            correo: admin.correo,
+            token: admin.token
+        });
+
+        res.json({ mensaje: "Administrador registrado. Revisa tu correo." });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Consultar todos
 const consulta = async (req, res, next) => {
     try {
-        const admins = await Administrador.find({});
-        res.json(admins);
+        res.json(await Administrador.find({}));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Consultar por id
 const consultaId = async (req, res, next) => {
     try {
-        const admin = await Administrador.findById(req.params.id);
-        res.json(admin);
+        res.json(await Administrador.findById(req.params.id));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Actualizar admin
 const actualizar = async (req, res, next) => {
     try {
-        const admin = await Administrador.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(admin);
+        res.json(await Administrador.findByIdAndUpdate(req.params.id, req.body, { new: true }));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Eliminar admin
 const eliminar = async (req, res, next) => {
     try {
         await Administrador.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Administrador eliminado" });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// LOGIN seguro
 const login = async (req, res, next) => {
-    const { usuario, password } = req.body;
-
     try {
-        const admin = await Administrador.findOne({ usuario });
+        const admin = await Administrador.findOne({ correo: req.body.correo });
+        if (!admin) return res.status(404).json({ mensaje: "Correo no encontrado" });
 
-        if (!admin) {
-            return res.status(404).json({ mensaje: "Usuario no encontrado" });
-        }
+        const valid = await admin.comparePassword(req.body.password);
+        if (!valid) return res.status(400).json({ mensaje: "Contraseña incorrecta" });
 
-        const validPass = await admin.comparePassword(password);
-        if (!validPass) {
-            return res.status(400).json({ mensaje: "Contraseña incorrecta" });
+        if (!admin.confirmado) {
+            return res.status(401).json({ mensaje: "Confirma tu cuenta primero." });
         }
 
         res.json({
             mensaje: "Login correcto",
-            usuario: admin.usuario,
             id: admin._id,
-            nombre: admin.nombre
+            usuario: admin.usuario
         });
-
     } catch (error) {
-        console.log(error);
+        next(error);
+    }
+};
+
+const confirmarCuenta = async (req, res, next) => {
+    try {
+        const admin = await Administrador.findOne({ token: req.params.token });
+        if (!admin) return res.status(400).json({ mensaje: "Token no válido" });
+
+        admin.confirmado = true;
+        admin.token = null;
+        await admin.save();
+
+        res.json({ mensaje: "Cuenta confirmada correctamente" });
+    } catch (error) {
         next(error);
     }
 };
@@ -91,5 +97,6 @@ export {
     consultaId,
     actualizar,
     eliminar,
-    login
+    login,
+    confirmarCuenta
 };

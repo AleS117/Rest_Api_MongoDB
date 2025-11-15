@@ -1,29 +1,14 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 mongoose.pluralize(null);
 
 const LoteSchema = new Schema({
-    _id: {
-        type: Number,
-        required: true
-    },
-    kilos: {
-        type: Number
-    },
-    numero_cajas: {
-        type: Number
-    },
-    precio_kilo: {
-        type: Number
-    },
-    fecha: {
-        type: Date
-    }
-});
+    _id: { type: Number, required: true },
+    kilos: Number,
+    numero_cajas: Number,
+    precio_kilo: Number,
+    fecha: { type: Date, default: Date.now }
+}, { timestamps: true });
 
-const Lote = mongoose.model("Lote", LoteSchema);
-
-export {
-    Lote
-}
+export const Lote = mongoose.model("Lote", LoteSchema);

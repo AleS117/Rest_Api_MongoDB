@@ -4,40 +4,33 @@ const crear = async (req, res, next) => {
     try {
         const especie = new Especie(req.body);
         await especie.save();
-        res.json({ mensaje: "Se creó la especie" });
+        res.json({ mensaje: "Especie creada" });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
 const consulta = async (req, res, next) => {
     try {
-        const especies = await Especie.find({});
-        res.json(especies);
+        res.json(await Especie.find({}));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Faltaba
 const consultaId = async (req, res, next) => {
     try {
-        const especie = await Especie.findById(req.params.id);
-        res.json(especie);
+        res.json(await Especie.findById(req.params.id));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-const editar = async (req, res, next) => {
+const actualizar = async (req, res, next) => {
     try {
         await Especie.findByIdAndUpdate(req.params.id, req.body);
         res.json({ mensaje: "Especie actualizada" });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
@@ -47,15 +40,14 @@ const eliminar = async (req, res, next) => {
         await Especie.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Especie eliminada" });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-export const ApiE = {
+export {
     crear,
     consulta,
     consultaId,
-    editar,
+    actualizar,
     eliminar
 };

@@ -16,7 +16,6 @@ router.get("/consulta/:id", consultaId);
 router.put("/actualizar/:id", actualizar);
 router.delete("/eliminar/:id", eliminar);
 
-// Compras realizadas por un comprador
 router.get("/comprador/:id", comprasPorComprador);
 
 export default router;

@@ -1,21 +1,11 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 mongoose.pluralize(null);
 
 const TipoSchema = new Schema({
-    _id: {
-        type: Number,
-        required: true
-    },
-    nombre: {
-        type: String,
-        trim: true
-    }
-});
+    _id: { type: Number, required: true },
+    nombre: { type: String, trim: true, required: true }
+}, { timestamps: true });
 
-const Tipo = mongoose.model("Tipo", TipoSchema);
-
-export {
-    Tipo
-}
+export const Tipo = mongoose.model("Tipo", TipoSchema);

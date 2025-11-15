@@ -5,7 +5,8 @@ import {
     consultaId,
     actualizar,
     eliminar,
-    login
+    login,
+    confirmarCuenta
 } from "../controllers/apiA.js";
 
 const router = express.Router();
@@ -16,7 +17,7 @@ router.get("/consulta/:id", consultaId);
 router.put("/actualizar/:id", actualizar);
 router.delete("/eliminar/:id", eliminar);
 
-// LOGIN ADMINISTRADOR
 router.post("/login", login);
+router.get("/confirmar/:token", confirmarCuenta);
 
 export default router;

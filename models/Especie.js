@@ -1,29 +1,13 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 mongoose.pluralize(null);
 
 const EspecieSchema = new Schema({
-    _id: {
-        type: Number,
-        required: true
-    },
-    nombre: {
-        type: String,
-        trim: true
-    },
-    id_tpo: {
-        type: Number,
-        required: true
-    },
-    imagen: {
-        type: String,
-        trim: true
-    }
-});
+    _id: { type: Number, required: true },
+    nombre: { type: String, trim: true, required: true },
+    id_tpo: { type: Number, required: true },
+    imagen: { type: String, trim: true }
+}, { timestamps: true });
 
-const Especie = mongoose.model("Especie", EspecieSchema);
-
-export {
-    Especie
-}
+export const Especie = mongoose.model("Especie", EspecieSchema);

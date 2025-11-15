@@ -1,80 +1,68 @@
-// controllers/apiCm.js
 import { Comprador } from "../models/Comprador.js";
+import crypto from "crypto";
+import { correoRegistro } from "../helpers/correoRegistro.js";
 
-// Crear comprador
 const crear = async (req, res, next) => {
     try {
         const comprador = new Comprador(req.body);
+        comprador.token = crypto.randomBytes(20).toString("hex");
         await comprador.save();
-        res.json({ mensaje: "Comprador creado correctamente" });
+
+        await correoRegistro({
+            nombre: comprador.nombre,
+            correo: comprador.correo,
+            token: comprador.token
+        });
+
+        res.json({ mensaje: "Comprador registrado. Revisa tu correo." });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Consultar todos los compradores
 const consulta = async (req, res, next) => {
     try {
-        const compradores = await Comprador.find({});
-        res.json(compradores);
+        res.json(await Comprador.find({}));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Consultar comprador por ID
 const consultaId = async (req, res, next) => {
     try {
-        const comprador = await Comprador.findById(req.params.id);
-        res.json(comprador);
+        res.json(await Comprador.findById(req.params.id));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Actualizar comprador
 const actualizar = async (req, res, next) => {
     try {
-        const comprador = await Comprador.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
-        res.json(comprador);
+        res.json(await Comprador.findByIdAndUpdate(req.params.id, req.body, { new: true }));
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// Eliminar comprador
 const eliminar = async (req, res, next) => {
     try {
         await Comprador.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Comprador eliminado" });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
-// LOGIN comprador
 const login = async (req, res, next) => {
-    const { correo, password } = req.body;
-
     try {
-        const comprador = await Comprador.findOne({ correo });
+        const comprador = await Comprador.findOne({ correo: req.body.correo });
+        if (!comprador) return res.status(404).json({ mensaje: "Correo no encontrado" });
 
-        if (!comprador) {
-            return res.status(404).json({ mensaje: "Correo no encontrado" });
-        }
+        const valid = await comprador.comparePassword(req.body.password);
+        if (!valid) return res.status(400).json({ mensaje: "Contraseña incorrecta" });
 
-        // Sin encriptar por ahora
-        if (comprador.password !== password) {
-            return res.status(400).json({ mensaje: "Contraseña incorrecta" });
+        if (!comprador.confirmado) {
+            return res.status(401).json({ mensaje: "Confirma tu cuenta primero." });
         }
 
         res.json({
@@ -82,9 +70,22 @@ const login = async (req, res, next) => {
             id: comprador._id,
             nombre: comprador.nombre
         });
-
     } catch (error) {
-        console.log(error);
+        next(error);
+    }
+};
+
+const confirmarCuenta = async (req, res, next) => {
+    try {
+        const comprador = await Comprador.findOne({ token: req.params.token });
+        if (!comprador) return res.status(400).json({ mensaje: "Token no válido" });
+
+        comprador.confirmado = true;
+        comprador.token = null;
+        await comprador.save();
+
+        res.json({ mensaje: "Cuenta confirmada correctamente" });
+    } catch (error) {
         next(error);
     }
 };
@@ -95,5 +96,6 @@ export {
     consultaId,
     actualizar,
     eliminar,
-    login
+    login,
+    confirmarCuenta
 };

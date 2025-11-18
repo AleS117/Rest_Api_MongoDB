@@ -5,19 +5,20 @@ import {
     consultaId,
     actualizar,
     eliminar,
-    login,
-    confirmarCuenta
+    login
 } from "../controllers/apiCm.js";
+import { checkAuth } from "../middleware/checkkAuth.js";
 
 const router = express.Router();
 
-router.post("/crear", crear);
-router.get("/consulta", consulta);
-router.get("/consulta/:id", consultaId);
-router.put("/actualizar/:id", actualizar);
-router.delete("/eliminar/:id", eliminar);
-
+// LOGIN (público)
 router.post("/login", login);
-router.get("/confirmar/:token", confirmarCuenta);
+
+// CRUD (protegido)
+router.post("/crear", checkAuth, crear);
+router.get("/consulta", checkAuth, consulta);
+router.get("/consulta/:id", checkAuth, consultaId);
+router.put("/actualizar/:id", checkAuth, actualizar);
+router.delete("/eliminar/:id", checkAuth, eliminar);
 
 export default router;

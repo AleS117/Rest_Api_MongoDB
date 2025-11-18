@@ -1,47 +1,48 @@
 import { Administrador } from "../models/Administrador.js";
-import crypto from "crypto";
-import { correoRegistro } from "../helpers/correoRegistro.js";
+import { generarJWT } from "../helpers/generarJWT.js";
 
 const crear = async (req, res, next) => {
     try {
         const admin = new Administrador(req.body);
-
-        admin.token = crypto.randomBytes(20).toString("hex");
         await admin.save();
-
-        await correoRegistro({
-            nombre: admin.usuario,
-            correo: admin.correo,
-            token: admin.token
-        });
-
-        res.json({ mensaje: "Administrador registrado. Revisa tu correo." });
+        res.json({ mensaje: "Administrador creado" });
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const consulta = async (req, res, next) => {
     try {
-        res.json(await Administrador.find({}));
+        const admins = await Administrador.find({});
+        res.json(admins);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const consultaId = async (req, res, next) => {
     try {
-        res.json(await Administrador.findById(req.params.id));
+        const admin = await Administrador.findById(req.params.id);
+        res.json(admin);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const actualizar = async (req, res, next) => {
     try {
-        res.json(await Administrador.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+        const admin = await Administrador.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+        res.json(admin);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
@@ -50,44 +51,45 @@ const eliminar = async (req, res, next) => {
         await Administrador.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Administrador eliminado" });
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
+// LOGIN
 const login = async (req, res, next) => {
+    const { usuario, password } = req.body;
+
     try {
-        const admin = await Administrador.findOne({ correo: req.body.correo });
-        if (!admin) return res.status(404).json({ mensaje: "Correo no encontrado" });
+        const admin = await Administrador.findOne({ usuario });
 
-        const valid = await admin.comparePassword(req.body.password);
-        if (!valid) return res.status(400).json({ mensaje: "Contraseña incorrecta" });
-
-        if (!admin.confirmado) {
-            return res.status(401).json({ mensaje: "Confirma tu cuenta primero." });
+        if (!admin) {
+            return res.status(404).json({ mensaje: "Usuario no encontrado" });
         }
+
+        if (admin.password !== password) {
+            return res.status(400).json({ mensaje: "Contraseña incorrecta" });
+        }
+
+        const token = generarJWT({
+            id: admin._id,
+            correo: admin.correo,
+            rol: admin.rol
+        });
 
         res.json({
             mensaje: "Login correcto",
-            id: admin._id,
-            usuario: admin.usuario
+            token,
+            admin: {
+                id: admin._id,
+                usuario: admin.usuario,
+                rol: admin.rol
+            }
         });
+
     } catch (error) {
-        next(error);
-    }
-};
-
-const confirmarCuenta = async (req, res, next) => {
-    try {
-        const admin = await Administrador.findOne({ token: req.params.token });
-        if (!admin) return res.status(400).json({ mensaje: "Token no válido" });
-
-        admin.confirmado = true;
-        admin.token = null;
-        await admin.save();
-
-        res.json({ mensaje: "Cuenta confirmada correctamente" });
-    } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
@@ -97,6 +99,5 @@ export {
     consultaId,
     actualizar,
     eliminar,
-    login,
-    confirmarCuenta
+    login
 };

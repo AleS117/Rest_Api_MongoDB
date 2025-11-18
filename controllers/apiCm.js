@@ -1,46 +1,48 @@
 import { Comprador } from "../models/Comprador.js";
-import crypto from "crypto";
-import { correoRegistro } from "../helpers/correoRegistro.js";
+import { generarJWT } from "../helpers/generarJWT.js";
 
 const crear = async (req, res, next) => {
     try {
         const comprador = new Comprador(req.body);
-        comprador.token = crypto.randomBytes(20).toString("hex");
         await comprador.save();
-
-        await correoRegistro({
-            nombre: comprador.nombre,
-            correo: comprador.correo,
-            token: comprador.token
-        });
-
-        res.json({ mensaje: "Comprador registrado. Revisa tu correo." });
+        res.json({ mensaje: "Comprador creado" });
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const consulta = async (req, res, next) => {
     try {
-        res.json(await Comprador.find({}));
+        const compradores = await Comprador.find({});
+        res.json(compradores);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const consultaId = async (req, res, next) => {
     try {
-        res.json(await Comprador.findById(req.params.id));
+        const comprador = await Comprador.findById(req.params.id);
+        res.json(comprador);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
 const actualizar = async (req, res, next) => {
     try {
-        res.json(await Comprador.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+        const comprador = await Comprador.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+        res.json(comprador);
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
@@ -49,44 +51,45 @@ const eliminar = async (req, res, next) => {
         await Comprador.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Comprador eliminado" });
     } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
+// LOGIN
 const login = async (req, res, next) => {
+    const { correo, password } = req.body;
+
     try {
-        const comprador = await Comprador.findOne({ correo: req.body.correo });
-        if (!comprador) return res.status(404).json({ mensaje: "Correo no encontrado" });
+        const comprador = await Comprador.findOne({ correo });
 
-        const valid = await comprador.comparePassword(req.body.password);
-        if (!valid) return res.status(400).json({ mensaje: "Contraseña incorrecta" });
-
-        if (!comprador.confirmado) {
-            return res.status(401).json({ mensaje: "Confirma tu cuenta primero." });
+        if (!comprador) {
+            return res.status(404).json({ mensaje: "Correo no encontrado" });
         }
+
+        if (comprador.password !== password) {
+            return res.status(400).json({ mensaje: "Contraseña incorrecta" });
+        }
+
+        const token = generarJWT({
+            id: comprador._id,
+            correo: comprador.correo,
+            rol: "comprador"
+        });
 
         res.json({
             mensaje: "Login correcto",
-            id: comprador._id,
-            nombre: comprador.nombre
+            token,
+            comprador: {
+                id: comprador._id,
+                nombre: comprador.nombre,
+                correo: comprador.correo
+            }
         });
+
     } catch (error) {
-        next(error);
-    }
-};
-
-const confirmarCuenta = async (req, res, next) => {
-    try {
-        const comprador = await Comprador.findOne({ token: req.params.token });
-        if (!comprador) return res.status(400).json({ mensaje: "Token no válido" });
-
-        comprador.confirmado = true;
-        comprador.token = null;
-        await comprador.save();
-
-        res.json({ mensaje: "Cuenta confirmada correctamente" });
-    } catch (error) {
-        next(error);
+        console.log(error);
+        next();
     }
 };
 
@@ -96,6 +99,5 @@ export {
     consultaId,
     actualizar,
     eliminar,
-    login,
-    confirmarCuenta
+    login
 };

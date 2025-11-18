@@ -16,13 +16,15 @@ const app = express();
 const conectarDB = async () => {
     try {
         await mongoose.connect(
-            "mongodb+srv://haloprom091_db_user:3zQxbCC7vbVVEuxS@cluster0.measa7g.mongodb.net/Lonja_Veracruz?appName=Cluster0"
+            // "mongodb+srv://haloprom091_db_user:3zQxbCC7vbVVEuxS@cluster0.measa7g.mongodb.net/Lonja_Veracruz?appName=Cluster0"
+            "mongodb://127.0.0.1:27017/Lonja_Veracruz"
         );
-        console.log("📌 MongoDB conectado correctamente.");
+        console.log(" MongoDB conectado correctamente.");
     } catch (error) {
-        console.log("❌ Error al conectar MongoDB:", error);
+        console.log(" Error al conectar MongoDB:", error);
     }
 };
+
 
 conectarDB();
 

@@ -7,9 +7,11 @@ const CompraSchema = new Schema({
     _id: { type: Number, required: true },
     id_lte: { type: Number, required: true },
     codigo_cpr: { type: Number, required: true },
+    id_comprador: { type: Number, required: true }, // <--- obligatorio para tu calendario
     precio_kilo_final: Number,
     precio_total: Number,
     fecha: { type: Date, default: Date.now }
-}, { timestamps: true });
+});
+
 
 export const Compra = mongoose.model("Compra", CompraSchema);

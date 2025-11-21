@@ -1,6 +1,7 @@
 import { Comprador } from "../models/Comprador.js";
 import { generarJWT } from "../helpers/generarJWT.js";
 
+// Crear comprador
 const crear = async (req, res, next) => {
     try {
         const comprador = new Comprador(req.body);
@@ -8,30 +9,33 @@ const crear = async (req, res, next) => {
         res.json({ mensaje: "Comprador creado" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
+// Consultar todos
 const consulta = async (req, res, next) => {
     try {
         const compradores = await Comprador.find({});
         res.json(compradores);
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
+// Consultar por ID
 const consultaId = async (req, res, next) => {
     try {
         const comprador = await Comprador.findById(req.params.id);
         res.json(comprador);
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
+// Actualizar
 const actualizar = async (req, res, next) => {
     try {
         const comprador = await Comprador.findByIdAndUpdate(
@@ -42,17 +46,18 @@ const actualizar = async (req, res, next) => {
         res.json(comprador);
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
+// Eliminar
 const eliminar = async (req, res, next) => {
     try {
         await Comprador.findByIdAndDelete(req.params.id);
         res.json({ mensaje: "Comprador eliminado" });
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 
@@ -77,7 +82,7 @@ const login = async (req, res, next) => {
             rol: "comprador"
         });
 
-        res.json({
+        return res.json({
             mensaje: "Login correcto",
             token,
             comprador: {
@@ -89,7 +94,7 @@ const login = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        next();
+        next(error);
     }
 };
 

@@ -42,7 +42,7 @@ app.use("/api/lotes", rutasL);
 app.use("/api/tipo", rutasT);
 
 //   Servidor
-const PORT = 3001;
+const PORT = 3002;
 app.listen(PORT, () => {
     console.log(`🚀 Servidor API funcionando en el puerto ${PORT}`);
 });

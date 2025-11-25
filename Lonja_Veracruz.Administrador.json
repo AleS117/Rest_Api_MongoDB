@@ -1,0 +1,23 @@
+[{
+  "_id": 1,
+  "usuario": "admin",
+  "correo": "admin@lonja.com",
+  "password": "12345",
+  "rol": "admin"
+},
+{
+  "_id": 2,
+  "usuario": "admin2",
+  "correo": "admin2@lonja.com",
+  "password": "$2b$10$Ukf97j0ZIFlcXp0F8QVNzeZh3a6SFEIXZrs0QkRCZadLAR7T7HiwS",
+  "rol": "admin",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-18T01:17:07.353Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-18T01:17:07.353Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,53 @@
+[{
+  "_id": 1,
+  "id_lte": 1,
+  "codigo_cpr": 1,
+  "precio_kilo_final": 32,
+  "precio_total": 3840,
+  "fecha": {
+    "$date": "2025-11-18T00:55:10.486Z"
+  }
+},
+{
+  "_id": 2,
+  "id_lte": 2,
+  "codigo_cpr": 2,
+  "precio_kilo_final": 27,
+  "precio_total": 2160,
+  "fecha": {
+    "$date": "2025-11-18T00:55:10.486Z"
+  }
+},
+{
+  "_id": 1001,
+  "id_lte": 1,
+  "codigo_cpr": 5001,
+  "id_comprador": 1,
+  "precio_kilo_final": 50,
+  "precio_total": 500,
+  "fecha": {
+    "$date": "2025-11-20T10:00:00.000Z"
+  }
+},
+{
+  "_id": 1002,
+  "id_lte": 2,
+  "codigo_cpr": 5002,
+  "id_comprador": 1,
+  "precio_kilo_final": 45,
+  "precio_total": 450,
+  "fecha": {
+    "$date": "2025-11-20T15:30:00.000Z"
+  }
+},
+{
+  "_id": 1003,
+  "id_lte": 3,
+  "codigo_cpr": 5003,
+  "id_comprador": 1,
+  "precio_kilo_final": 60,
+  "precio_total": 600,
+  "fecha": {
+    "$date": "2025-11-21T12:00:00.000Z"
+  }
+}]

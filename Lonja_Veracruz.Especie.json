@@ -1,0 +1,18 @@
+[{
+  "_id": 1,
+  "nombre": "Mango",
+  "id_tpo": 1,
+  "imagen": "mango.jpg"
+},
+{
+  "_id": 2,
+  "nombre": "Aguacate",
+  "id_tpo": 1,
+  "imagen": "aguacate.jpg"
+},
+{
+  "_id": 3,
+  "nombre": "Zanahoria",
+  "id_tpo": 2,
+  "imagen": "zanahoria.jpg"
+}]

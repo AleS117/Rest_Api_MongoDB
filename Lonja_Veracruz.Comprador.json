@@ -1,0 +1,18 @@
+[{
+  "_id": 1,
+  "nombre": "Carlos",
+  "apellido_paterno": "Martínez",
+  "apellido_materno": "Lopez",
+  "direccion": "Calle 123",
+  "correo": "carlos@mail.com",
+  "password": "12345"
+},
+{
+  "_id": 2,
+  "nombre": "Lucia",
+  "apellido_paterno": "Santos",
+  "apellido_materno": "Perez",
+  "direccion": "Av Central 55",
+  "correo": "lucia@mail.com",
+  "password": "12345"
+}]

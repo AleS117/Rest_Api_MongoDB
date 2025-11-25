@@ -1,0 +1,18 @@
+[{
+  "_id": 1,
+  "kilos": 120,
+  "numero_cajas": 10,
+  "precio_kilo": 30,
+  "fecha": {
+    "$date": "2025-11-18T00:55:02.544Z"
+  }
+},
+{
+  "_id": 2,
+  "kilos": 80,
+  "numero_cajas": 8,
+  "precio_kilo": 25,
+  "fecha": {
+    "$date": "2025-11-18T00:55:02.544Z"
+  }
+}]

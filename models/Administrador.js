@@ -5,9 +5,8 @@ mongoose.pluralize(null);
 const Schema = mongoose.Schema;
 
 const AdministradorSchema = new Schema({
-    _id: { type: Number, required: true },
     usuario: { type: String, trim: true, required: true, unique: true },
-    correo: { type: String, trim: true, lowercase: true, required: true, unique: true },
+    correo: { type: String, trim: true, lowercase: true, required: false },
     password: { type: String, trim: true, required: true },
     rol: { type: String, default: "admin" },
     token: { type: String, default: null },

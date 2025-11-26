@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.post("/crear", crear);
-router.get("/consulta", consulta);
-router.get("/consulta/:id", consultaId);
-router.put("/actualizar/:id", actualizar);
-router.delete("/eliminar/:id", eliminar);
+router.post("/crear", crear);              // Crear nueva especie
+router.get("/consulta", consulta);         // Listar todas
+router.get("/consulta/:id", consultaId);   // Consultar por id
+router.put("/actualizar/:id", actualizar);// Actualizar por id
+router.delete("/eliminar/:id", eliminar); // Eliminar por id
 
 export default router;

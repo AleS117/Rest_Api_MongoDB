@@ -12,7 +12,8 @@ const crear = async (req, res, next) => {
 
 const consulta = async (req, res, next) => {
     try {
-        res.json(await Lote.find({}));
+        const lotes = await Lote.find({});
+        res.json(lotes);
     } catch (error) {
         next(error);
     }
@@ -20,7 +21,8 @@ const consulta = async (req, res, next) => {
 
 const consultaId = async (req, res, next) => {
     try {
-        res.json(await Lote.findById(req.params.id));
+        const lote = await Lote.findById(req.params.id);
+        res.json(lote);
     } catch (error) {
         next(error);
     }

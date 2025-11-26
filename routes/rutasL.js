@@ -5,10 +5,11 @@ import {
     consultaId,
     actualizar,
     eliminar
-} from "../controllers/apiL.js";
+} from "../controllers/ApiL.js";
 
 const router = express.Router();
 
+// 🔹 Rutas para Lotes
 router.post("/crear", crear);
 router.get("/consulta", consulta);
 router.get("/consulta/:id", consultaId);

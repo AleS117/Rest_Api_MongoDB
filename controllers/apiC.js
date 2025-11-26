@@ -50,16 +50,28 @@ const eliminar = async (req, res, next) => {
 };
 
 // Obtener compras de un comprador
+// apiC.js - endpoint para compras por comprador
 const comprasPorComprador = async (req, res, next) => {
   try {
-    const compras = await Compra.find({ id_comprador: req.params.id });
+    const { id } = req.params;
+    const { fechaInicio, fechaFin } = req.query;
+
+    let filtro = { id_comprador: Number(id) };
+
+    if (fechaInicio && fechaFin) {
+      filtro.fecha = {
+        $gte: new Date(fechaInicio + "T00:00:00Z"),
+        $lte: new Date(fechaFin + "T23:59:59Z")
+      };
+    }
+
+    const compras = await Compra.find(filtro);
     res.json(compras);
   } catch (error) {
     next(error);
   }
 };
 
-// 🔹 Nuevo endpoint: compras de un comprador filtradas por fecha
 const comprasPorCompradorPorFecha = async (req, res, next) => {
   try {
     const { id, fecha } = req.params;
@@ -68,12 +80,9 @@ const comprasPorCompradorPorFecha = async (req, res, next) => {
       return res.status(400).json({ mensaje: "Faltan parámetros" });
     }
 
-    // Rango de fechas para el día completo
-    const inicio = new Date(fecha);
-    inicio.setHours(0, 0, 0, 0);
-
-    const fin = new Date(fecha);
-    fin.setHours(23, 59, 59, 999);
+    // Convierte la fecha recibida a ISODate UTC para incluir todo el día completo
+    const inicio = new Date(fecha + "T00:00:00Z");
+    const fin    = new Date(fecha + "T23:59:59.999Z");
 
     const compras = await Compra.find({
       id_comprador: Number(id),
@@ -86,6 +95,11 @@ const comprasPorCompradorPorFecha = async (req, res, next) => {
     res.status(500).json({ mensaje: "Error al obtener las compras" });
   }
 };
+
+
+
+
+
 
 export {
   crear,

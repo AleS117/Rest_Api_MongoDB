@@ -9,6 +9,7 @@ import rutasCm from "./routes/rutasCm.js"; // Compradores
 import rutasE from "./routes/rutasE.js";   // Especies
 import rutasL from "./routes/rutasL.js";   // Lotes
 import rutasT from "./routes/rutasT.js";   // Tipos
+import rutasCarrito from "./routes/rutasCarrito.js";
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use("/api/compradores", rutasCm);
 app.use("/api/especies", rutasE);
 app.use("/api/lotes", rutasL);
 app.use("/api/tipos", rutasT); // 🔹 Cambiado a plural
+app.use("/api/carrito", rutasCarrito);
 
 // Servidor
 const PORT = 3002;

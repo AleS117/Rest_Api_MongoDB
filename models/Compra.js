@@ -1,15 +1,13 @@
+// models/Compra.js
 import mongoose from "mongoose";
-const Schema = mongoose.Schema;
 
-mongoose.pluralize(null);
-
-const CompraSchema = new Schema({
-    id_lte: { type: Number, required: true },
-    codigo_cpr: { type: Number, required: true },
-    id_comprador: { type: mongoose.Schema.Types.ObjectId, ref: "Comprador", required: true },
-    precio_kilo_final: Number,
-    precio_total: Number,
-    fecha: { type: Date, default: Date.now }
+const CompraSchema = new mongoose.Schema({
+  id_lte: { type: mongoose.Schema.Types.ObjectId, ref: "Lote", required: true },
+  codigo_cpr: { type: Number, required: true },
+  id_comprador: { type: mongoose.Schema.Types.ObjectId, ref: "Comprador", required: true },
+  precio_kilo_final: { type: Number, required: true },
+  precio_total: { type: Number, required: true },
+  fecha: { type: Date, required: true },
 });
 
 export const Compra = mongoose.model("Compra", CompraSchema);

@@ -1,18 +1,97 @@
 [{
-  "_id": 1,
-  "nombre": "Mango",
+  "_id": {
+    "$oid": "69276ced8b788665569dc2be"
+  },
+  "nombre": "Sierra",
   "id_tpo": 1,
-  "imagen": "mango.jpg"
+  "imagen": "https://example.com/sierra.jpg",
+  "tipo": {
+    "$oid": "69277b518b788665569dc2cd"
+  },
+  "updatedAt": {
+    "$date": "2025-11-26T22:18:20.295Z"
+  }
 },
 {
-  "_id": 2,
-  "nombre": "Aguacate",
-  "id_tpo": 1,
-  "imagen": "aguacate.jpg"
+  "_id": {
+    "$oid": "69276ced8b788665569dc2c0"
+  },
+  "nombre": "Camarón",
+  "id_tpo": 3,
+  "imagen": "https://example.com/camaron.jpg"
 },
 {
-  "_id": 3,
-  "nombre": "Zanahoria",
+  "_id": {
+    "$oid": "69276ced8b788665569dc2c2"
+  },
+  "nombre": "Tilapia",
   "id_tpo": 2,
-  "imagen": "zanahoria.jpg"
+  "imagen": "https://example.com/tilapia.jpg"
+},
+{
+  "_id": {
+    "$oid": "69276ced8b788665569dc2c3"
+  },
+  "nombre": "Jaiba",
+  "id_tpo": 3,
+  "imagen": "https://example.com/jaiba.jpg"
+},
+{
+  "_id": {
+    "$oid": "69276eb08b788665569dc2c5"
+  },
+  "nombre": "Huachinango",
+  "id_tpo": 1,
+  "imagen": "https://lafreskaderia.com/wp-content/uploads/2020/02/Huachinango-completo.jpg",
+  "updatedAt": {
+    "$date": "2025-11-26T21:28:13.683Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69276eb08b788665569dc2c7"
+  },
+  "nombre": "Mojarra",
+  "id_tpo": 2,
+  "imagen": "https://example.com/mojarra.jpg"
+},
+{
+  "_id": {
+    "$oid": "69276eb08b788665569dc2c9"
+  },
+  "nombre": "Pulpo",
+  "id_tpo": 3,
+  "imagen": "https://example.com/pulpo.jpg"
+},
+{
+  "_id": {
+    "$oid": "692771155251f51cbc820056"
+  },
+  "nombre": "pez globo",
+  "id_tpo": 1,
+  "imagen": "https://p.turbosquid.com/ts-thumb/Hz/SWYvpM/FD/inflatedpufferfishvray3dmodel002/jpg/1708170486/600x600/fit_q87/9f9928029c3270a843db01e72be0e4ce786f8138/inflatedpufferfishvray3dmodel002.jpg",
+  "createdAt": {
+    "$date": "2025-11-26T21:28:53.106Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-26T21:28:53.106Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692a07a301eab9adcdab791b"
+  },
+  "nombre": "pez",
+  "tipo": {
+    "$oid": "69277b518b788665569dc2ce"
+  },
+  "imagen": "eje.com",
+  "createdAt": {
+    "$date": "2025-11-28T20:35:47.756Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T20:35:47.756Z"
+  },
+  "__v": 0
 }]

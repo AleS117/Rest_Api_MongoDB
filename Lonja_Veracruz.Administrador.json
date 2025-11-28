@@ -1,23 +1,161 @@
 [{
-  "_id": 1,
-  "usuario": "admin",
-  "correo": "admin@lonja.com",
-  "password": "12345",
-  "rol": "admin"
+  "_id": {
+    "$oid": "6927252e4ca274a06d388a54"
+  },
+  "usuario": "admin0",
+  "password": "$2b$10$crjnjMlTVY0o6oSAEeQSUe//8kbVgPqpexLh55ENdG9puyDflsiFC",
+  "rol": "ADMIN",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-26T16:05:03.004Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-26T16:41:40.725Z"
+  },
+  "__v": 0
 },
 {
-  "_id": 2,
-  "usuario": "admin2",
-  "correo": "admin2@lonja.com",
-  "password": "$2b$10$Ukf97j0ZIFlcXp0F8QVNzeZh3a6SFEIXZrs0QkRCZadLAR7T7HiwS",
+  "_id": {
+    "$oid": "6927322d956a9cc45a59ecab"
+  },
+  "usuario": "admin",
+  "correo": "1234@email.com",
+  "password": "$2b$10$eeVfMR1o.Al8ikMyowK1W.XZNGqDn7W9tN6Evq37m90AgFsiW3xXa",
   "rol": "admin",
   "token": null,
   "confirmado": false,
   "createdAt": {
-    "$date": "2025-11-18T01:17:07.353Z"
+    "$date": "2025-11-26T17:00:29.509Z"
   },
   "updatedAt": {
-    "$date": "2025-11-18T01:17:07.353Z"
+    "$date": "2025-11-26T17:00:29.509Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f05a6263b4c4c8fbdb6c"
+  },
+  "usuario": "mau",
+  "correo": "",
+  "password": "$2b$10$jbF3t7403NCHaZcv67vjZOJIMtz4JFyyZ9Lghf0pWzj0ZKX0kRXt.",
+  "rol": "ADMIN",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T18:56:26.510Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T18:56:26.510Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f0986263b4c4c8fbdb77"
+  },
+  "usuario": "12345",
+  "correo": "123@email.com",
+  "password": "$2b$10$td8QYsEtIGft2SQgD8AYjuRqkTHAycQRbJqADHJhXnf2GuOtbqPPu",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T18:57:28.037Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T18:57:28.037Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f2406263b4c4c8fbdb85"
+  },
+  "usuario": "1234567",
+  "correo": "123546@email.com",
+  "password": "$2b$10$ohconsSod7dRC1bknpdhgeX3p/xzK16SgZxsp/vCYPFw4ijapcAGS",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T19:04:32.900Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T19:04:32.900Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f34b6263b4c4c8fbdb89"
+  },
+  "usuario": "12345678",
+  "correo": "1235476@email.com",
+  "password": "$2b$10$pX3PryAUQx0XsvgisOvnFecIzPWxsuUUh.yL7ptkcxfFI37F0F3qO",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T19:08:59.605Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T19:08:59.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f500b70197a5c3a5bc5b"
+  },
+  "usuario": "123456789",
+  "correo": "123547326@email.com",
+  "password": "$2b$10$aSJJth43qJ5fhTcLVNXUxuQgmYAtcNVSMZ9Zq/gqI/v9NJJXx9382",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T19:16:16.960Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T19:16:16.960Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f70bb70197a5c3a5bc6c"
+  },
+  "usuario": "12345678910",
+  "correo": "123547326y@email.com",
+  "password": "$2b$10$wFQGXApIzCK03mh0JeSJ0Oy2z9sepWRmb0Zw7yBKN5GwxO3J4nLCe",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T19:24:59.178Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T19:24:59.178Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929fa42b70197a5c3a5bd0c"
+  },
+  "usuario": "yan",
+  "correo": "123@emial.com",
+  "password": "$2b$10$03SPYu86AGGWOBzkJ7WHsuCR7gCELUqGrYnsyQaWa7VTPj0cfbj3u",
+  "rol": "TRABAJADOR",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T19:38:42.135Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T20:10:15.535Z"
   },
   "__v": 0
 }]

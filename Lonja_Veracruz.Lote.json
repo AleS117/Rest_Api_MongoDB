@@ -1,18 +1,86 @@
 [{
-  "_id": 1,
-  "kilos": 120,
-  "numero_cajas": 10,
-  "precio_kilo": 30,
+  "_id": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "id_especie": {
+    "$oid": "69276ced8b788665569dc2be"
+  },
+  "id_tipo": {
+    "$oid": "69277b518b788665569dc2cd"
+  },
+  "kilos": 30,
+  "numero_cajas": 5,
+  "precio_kilo": 80,
   "fecha": {
-    "$date": "2025-11-18T00:55:02.544Z"
+    "$date": "2025-11-21T00:00:00.000Z"
   }
 },
 {
-  "_id": 2,
-  "kilos": 80,
+  "_id": {
+    "$oid": "6927d923fa994887bc9dc29f"
+  },
+  "id_especie": {
+    "$oid": "69276ced8b788665569dc2bf"
+  },
+  "id_tipo": {
+    "$oid": "69277b518b788665569dc2ce"
+  },
+  "kilos": 40,
   "numero_cajas": 8,
-  "precio_kilo": 25,
+  "precio_kilo": 45,
   "fecha": {
-    "$date": "2025-11-18T00:55:02.544Z"
+    "$date": "2025-11-22T00:00:00.000Z"
   }
+},
+{
+  "_id": {
+    "$oid": "6927d923fa994887bc9dc2a1"
+  },
+  "id_especie": {
+    "$oid": "69276ced8b788665569dc2be"
+  },
+  "id_tipo": {
+    "$oid": "69277b518b788665569dc2cd"
+  },
+  "kilos": 25,
+  "numero_cajas": 4,
+  "precio_kilo": 75,
+  "fecha": {
+    "$date": "2025-11-24T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6927d923fa994887bc9dc2a2"
+  },
+  "id_especie": {
+    "$oid": "69276ced8b788665569dc2bf"
+  },
+  "id_tipo": {
+    "$oid": "69277b518b788665569dc2cf"
+  },
+  "kilos": 35,
+  "numero_cajas": 7,
+  "precio_kilo": 50,
+  "fecha": {
+    "$date": "2025-11-25T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6927ddbf33a2317910987053"
+  },
+  "id_especie": {
+    "$oid": "69276ced8b788665569dc2c3"
+  },
+  "id_tipo": {
+    "$oid": "69277b518b788665569dc2cf"
+  },
+  "kilos": 34,
+  "numero_cajas": 12,
+  "precio_kilo": 123,
+  "fecha": {
+    "$date": "2025-11-26T00:00:00.000Z"
+  },
+  "__v": 0
 }]

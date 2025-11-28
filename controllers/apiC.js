@@ -1,3 +1,4 @@
+// controllers/apiC.js
 import { Compra } from "../models/Compra.js";
 import mongoose from "mongoose";
 
@@ -15,7 +16,7 @@ const crear = async (req, res, next) => {
 // Consultar todas las compras
 const consulta = async (req, res, next) => {
   try {
-    const compras = await Compra.find({});
+    const compras = await Compra.find().populate("id_comprador", "nombre correo");
     res.json(compras);
   } catch (error) {
     next(error);
@@ -26,18 +27,12 @@ const consulta = async (req, res, next) => {
 const consultaId = async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    let filtro;
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      filtro = { _id: new mongoose.Types.ObjectId(id) };
-    } else if (!isNaN(parseInt(id))) {
-      filtro = { _id: parseInt(id) };
-    } else {
+    if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ mensaje: "ID inválido" });
-    }
 
-    const compra = await Compra.findOne(filtro);
+    const compra = await Compra.findById(id).populate("id_comprador", "nombre correo");
     if (!compra) return res.status(404).json({ mensaje: "Compra no encontrada" });
+
     res.json(compra);
   } catch (error) {
     next(error);
@@ -49,17 +44,15 @@ const actualizar = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    let filtro;
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      filtro = { _id: new mongoose.Types.ObjectId(id) };
-    } else if (!isNaN(parseInt(id))) {
-      filtro = { _id: parseInt(id) };
-    } else {
+    if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ mensaje: "ID inválido" });
-    }
 
-    const compra = await Compra.findOneAndUpdate(filtro, req.body, { new: true });
+    const compra = await Compra.findByIdAndUpdate(id, req.body, {
+      new: true
+    }).populate("id_comprador", "nombre correo");
+
     if (!compra) return res.status(404).json({ mensaje: "Compra no encontrada" });
+
     res.json({ mensaje: "Compra actualizada", compra });
   } catch (error) {
     next(error);
@@ -71,18 +64,10 @@ const eliminar = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    if (!id) return res.status(400).json({ mensaje: "Falta el ID" });
-
-    let filtro;
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      filtro = { _id: new mongoose.Types.ObjectId(id) };
-    } else if (!isNaN(parseInt(id))) {
-      filtro = { _id: parseInt(id) };
-    } else {
+    if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ mensaje: "ID inválido" });
-    }
 
-    const compra = await Compra.findOneAndDelete(filtro);
+    const compra = await Compra.findByIdAndDelete(id);
     if (!compra) return res.status(404).json({ mensaje: "Compra no encontrada" });
 
     res.json({ mensaje: "Compra eliminada" });
@@ -91,19 +76,16 @@ const eliminar = async (req, res, next) => {
   }
 };
 
-// Obtener compras de un comprador
+// Compras por comprador (opcional por rango)
 const comprasPorComprador = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { fechaInicio, fechaFin } = req.query;
 
-    if (!id) return res.status(400).json({ mensaje: "Falta el ID de comprador" });
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ mensaje: "ID inválido" });
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ mensaje: "ID de comprador inválido" });
-    }
-
-    let filtro = { id_comprador: new mongoose.Types.ObjectId(id) };
+    const filtro = { id_comprador: id };
 
     if (fechaInicio && fechaFin) {
       filtro.fecha = {
@@ -112,38 +94,32 @@ const comprasPorComprador = async (req, res, next) => {
       };
     }
 
-    const compras = await Compra.find(filtro);
+    const compras = await Compra.find(filtro).populate("id_comprador", "nombre correo");
     res.json(compras);
   } catch (error) {
     next(error);
   }
 };
 
-// Obtener compras de un comprador por fecha exacta
+// Compras por comprador en fecha exacta
 const comprasPorCompradorPorFecha = async (req, res, next) => {
   try {
     const { id, fecha } = req.params;
 
-    if (!id || !fecha) {
-      return res.status(400).json({ mensaje: "Faltan parámetros" });
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ mensaje: "ID de comprador inválido" });
-    }
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ mensaje: "ID inválido" });
 
     const inicio = new Date(fecha + "T00:00:00Z");
     const fin = new Date(fecha + "T23:59:59.999Z");
 
     const compras = await Compra.find({
-      id_comprador: new mongoose.Types.ObjectId(id),
+      id_comprador: id,
       fecha: { $gte: inicio, $lte: fin }
-    });
+    }).populate("id_comprador", "nombre correo");
 
     res.json(compras);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ mensaje: "Error al obtener las compras" });
+    next(error);
   }
 };
 

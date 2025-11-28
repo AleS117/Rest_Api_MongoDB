@@ -1,18 +1,104 @@
 [{
-  "_id": 1,
-  "nombre": "Carlos",
+  "_id": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "nombre": "bruno",
+  "apellido_paterno": "ricardo",
+  "apellido_materno": "valdez",
+  "direccion": "indios verdes",
+  "correo": "bruno@email.com",
+  "password": "$2b$10$aagPMYLgGShhV8QbPGJAp.pPPCHCA23a2och/RjDo0H4WmhOhJ/uS",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-26T17:20:32.261Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T05:21:31.686Z"
+  },
+  "__v": 0,
+  "rol": "COMPRADOR"
+},
+{
+  "_id": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "nombre": "Carlo",
   "apellido_paterno": "Martínez",
   "apellido_materno": "Lopez",
   "direccion": "Calle 123",
   "correo": "carlos@mail.com",
-  "password": "12345"
+  "password": "12345",
+  "updatedAt": {
+    "$date": "2025-11-26T18:38:33.126Z"
+  }
 },
 {
-  "_id": 2,
+  "_id": {
+    "$oid": "69273ed48b788665569dc2aa"
+  },
   "nombre": "Lucia",
   "apellido_paterno": "Santos",
   "apellido_materno": "Perez",
   "direccion": "Av Central 55",
   "correo": "lucia@mail.com",
   "password": "12345"
+},
+{
+  "_id": {
+    "$oid": "69292d7e5589d27d46dd9add"
+  },
+  "nombre": "Mau",
+  "apellido_paterno": "Alcantara",
+  "apellido_materno": "Cruz",
+  "direccion": "Iztapalapa",
+  "correo": "prueba1@email.com",
+  "password": "$2b$10$46dI58DWX8nXxNRqENm7Few7taVQp52DzM2BuaG.3nzhPeaKYmZkG",
+  "token": null,
+  "confirmado": false,
+  "createdAt": {
+    "$date": "2025-11-28T05:05:02.913Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T05:15:45.599Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692931e83519379cb9c85648"
+  },
+  "nombre": "Alejandro",
+  "apellido_paterno": "Ortega",
+  "apellido_materno": "Enriquez",
+  "direccion": "Av Nuevo Leon 1084",
+  "correo": "123@emial.com",
+  "password": "$2b$10$XzHiRX.BQax4MNddNTETf.2nZpEx0PgCXmeDi4U.GQrATWg.6eYPe",
+  "rol": "COMPRADOR",
+  "createdAt": {
+    "$date": "2025-11-28T05:23:52.131Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T05:33:29.446Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692934473519379cb9c856cb"
+  },
+  "nombre": "Alejandr",
+  "apellido_paterno": "Ortega",
+  "apellido_materno": "Enriquez",
+  "direccion": "Av Nuevo Leon 1084",
+  "correo": "117@emial.omc",
+  "password": "$2b$10$2nc8U0eZtfaIKkhkWNQIyuUoBQZ2GBbppUaf/8ZtrcB5vowi09dem",
+  "rol": "COMPRADOR",
+  "createdAt": {
+    "$date": "2025-11-28T05:33:59.348Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-28T05:33:59.348Z"
+  },
+  "__v": 0
 }]

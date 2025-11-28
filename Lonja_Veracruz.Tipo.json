@@ -1,8 +1,18 @@
 [{
-  "_id": 1,
-  "nombre": "Frutas"
+  "_id": {
+    "$oid": "69277b518b788665569dc2cd"
+  },
+  "nombre": "Pescado"
 },
 {
-  "_id": 2,
-  "nombre": "Verduras"
+  "_id": {
+    "$oid": "69277b518b788665569dc2ce"
+  },
+  "nombre": "Pescado de agua dulce"
+},
+{
+  "_id": {
+    "$oid": "69277b518b788665569dc2cf"
+  },
+  "nombre": "Marisco"
 }]

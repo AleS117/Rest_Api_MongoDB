@@ -1,28 +1,102 @@
 [{
-  "_id": 1,
-  "id_lte": 1,
-  "codigo_cpr": 1,
-  "precio_kilo_final": 32,
-  "precio_total": 3840,
+  "_id": {
+    "$oid": "69275a188b788665569dc2ae"
+  },
+  "id_lte": 5,
+  "codigo_cpr": 901,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 12.5,
+  "precio_total": 125,
   "fecha": {
-    "$date": "2025-11-18T00:55:10.486Z"
+    "$date": "2025-11-03T10:30:00.000Z"
   }
 },
 {
-  "_id": 2,
+  "_id": {
+    "$oid": "69275a188b788665569dc2af"
+  },
+  "id_lte": 3,
+  "codigo_cpr": 902,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 11.8,
+  "precio_total": 94.4,
+  "fecha": {
+    "$date": "2025-11-05T14:45:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b0"
+  },
+  "id_lte": 8,
+  "codigo_cpr": 903,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 13.1,
+  "precio_total": 209.6,
+  "fecha": {
+    "$date": "2025-11-10T18:20:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b1"
+  },
   "id_lte": 2,
-  "codigo_cpr": 2,
-  "precio_kilo_final": 27,
-  "precio_total": 2160,
+  "codigo_cpr": 904,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 12,
+  "precio_total": 24,
   "fecha": {
-    "$date": "2025-11-18T00:55:10.486Z"
+    "$date": "2025-11-15T09:10:00.000Z"
   }
 },
 {
-  "_id": 1001,
+  "_id": {
+    "$oid": "69275a188b788665569dc2b2"
+  },
+  "id_lte": 7,
+  "codigo_cpr": 905,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 12.9,
+  "precio_total": 90.3,
+  "fecha": {
+    "$date": "2025-11-21T16:55:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b3"
+  },
+  "id_lte": 4,
+  "codigo_cpr": 906,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 11.5,
+  "precio_total": 46,
+  "fecha": {
+    "$date": "2025-11-27T11:40:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b4"
+  },
   "id_lte": 1,
   "codigo_cpr": 5001,
-  "id_comprador": 1,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
   "precio_kilo_final": 50,
   "precio_total": 500,
   "fecha": {
@@ -30,10 +104,14 @@
   }
 },
 {
-  "_id": 1002,
+  "_id": {
+    "$oid": "69275a188b788665569dc2b5"
+  },
   "id_lte": 2,
   "codigo_cpr": 5002,
-  "id_comprador": 1,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
   "precio_kilo_final": 45,
   "precio_total": 450,
   "fecha": {
@@ -41,13 +119,305 @@
   }
 },
 {
-  "_id": 1003,
+  "_id": {
+    "$oid": "69275a188b788665569dc2b6"
+  },
   "id_lte": 3,
   "codigo_cpr": 5003,
-  "id_comprador": 1,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
   "precio_kilo_final": 60,
   "precio_total": 600,
   "fecha": {
     "$date": "2025-11-21T12:00:00.000Z"
   }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b7"
+  },
+  "id_lte": 1,
+  "codigo_cpr": 6001,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 50,
+  "precio_total": 500,
+  "fecha": {
+    "$date": "2025-11-20T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b8"
+  },
+  "id_lte": 2,
+  "codigo_cpr": 6002,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 45,
+  "precio_total": 450,
+  "fecha": {
+    "$date": "2025-11-20T15:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2b9"
+  },
+  "id_lte": 3,
+  "codigo_cpr": 6003,
+  "id_comprador": {
+    "$oid": "69273ecd8b788665569dc2a9"
+  },
+  "precio_kilo_final": 60,
+  "precio_total": 600,
+  "fecha": {
+    "$date": "2025-11-21T12:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2ba"
+  },
+  "id_lte": 4,
+  "codigo_cpr": 6004,
+  "id_comprador": {
+    "$oid": "69273ed48b788665569dc2aa"
+  },
+  "precio_kilo_final": 55,
+  "precio_total": 550,
+  "fecha": {
+    "$date": "2025-11-22T11:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2bb"
+  },
+  "id_lte": 5,
+  "codigo_cpr": 6005,
+  "id_comprador": {
+    "$oid": "69273ed48b788665569dc2aa"
+  },
+  "precio_kilo_final": 48,
+  "precio_total": 480,
+  "fecha": {
+    "$date": "2025-11-23T14:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69275a188b788665569dc2bc"
+  },
+  "id_lte": 6,
+  "codigo_cpr": 6006,
+  "id_comprador": {
+    "$oid": "69273ed48b788665569dc2aa"
+  },
+  "precio_kilo_final": 52,
+  "precio_total": 520,
+  "fecha": {
+    "$date": "2025-11-24T09:15:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "692880014ba8f45f160e7a4d"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 261889569,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 80,
+  "fecha": {
+    "$date": "2025-11-27T16:44:49.569Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692881a132bafa1ca9164648"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29f"
+  },
+  "codigo_cpr": 262305310,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 45,
+  "precio_total": 45,
+  "fecha": {
+    "$date": "2025-11-27T16:51:45.310Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692881a132bafa1ca916464a"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc2a0"
+  },
+  "codigo_cpr": 262305314,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 55,
+  "precio_total": 55,
+  "fecha": {
+    "$date": "2025-11-27T16:51:45.314Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929156d91b6d8414273738c"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 300141239,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 240,
+  "fecha": {
+    "$date": "2025-11-28T03:22:21.239Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929316f3519379cb9c85631"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 307311490,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 80,
+  "fecha": {
+    "$date": "2025-11-28T05:21:51.490Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692932143519379cb9c85670"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 307476386,
+  "id_comprador": {
+    "$oid": "692931e83519379cb9c85648"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 80,
+  "fecha": {
+    "$date": "2025-11-28T05:24:36.386Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692932143519379cb9c85672"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29f"
+  },
+  "codigo_cpr": 307476387,
+  "id_comprador": {
+    "$oid": "692931e83519379cb9c85648"
+  },
+  "precio_kilo_final": 45,
+  "precio_total": 45,
+  "fecha": {
+    "$date": "2025-11-28T05:24:36.387Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929cee9ae3034f280d5a189"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 347625059,
+  "id_comprador": {
+    "$oid": "692736e0c54e49e7f574825b"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 80,
+  "fecha": {
+    "$date": "2025-11-28T16:33:45.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929cf29ae3034f280d5a1b9"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29f"
+  },
+  "codigo_cpr": 347689901,
+  "id_comprador": {
+    "$oid": "6927252e4ca274a06d388a54"
+  },
+  "precio_kilo_final": 45,
+  "precio_total": 45,
+  "fecha": {
+    "$date": "2025-11-28T16:34:49.901Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f9ebb70197a5c3a5bcdb"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29e"
+  },
+  "codigo_cpr": 358635785,
+  "id_comprador": {
+    "$oid": "6927252e4ca274a06d388a54"
+  },
+  "precio_kilo_final": 80,
+  "precio_total": 80,
+  "fecha": {
+    "$date": "2025-11-28T19:37:15.785Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6929f9ebb70197a5c3a5bcdd"
+  },
+  "id_lte": {
+    "$oid": "6927d923fa994887bc9dc29f"
+  },
+  "codigo_cpr": 358635786,
+  "id_comprador": {
+    "$oid": "6927252e4ca274a06d388a54"
+  },
+  "precio_kilo_final": 45,
+  "precio_total": 45,
+  "fecha": {
+    "$date": "2025-11-28T19:37:15.786Z"
+  },
+  "__v": 0
 }]

@@ -1,5 +1,7 @@
+// controllers/apiA.js
 import { Administrador } from "../models/Administrador.js";
 import { generarJWT } from "../helpers/generarJWT.js";
+import bcrypt from "bcryptjs";
 
 // Crear administrador
 const crear = async (req, res, next) => {
@@ -13,7 +15,7 @@ const crear = async (req, res, next) => {
   }
 };
 
-// Consultar todos los administradores
+// Consultar todos
 const consulta = async (req, res, next) => {
   try {
     const admins = await Administrador.find({});
@@ -24,11 +26,10 @@ const consulta = async (req, res, next) => {
   }
 };
 
-// Consultar administrador por ID
+// Consultar por ID
 const consultaId = async (req, res, next) => {
   try {
-    const id = req.params.id; // string, no Number
-    const admin = await Administrador.findById(id);
+    const admin = await Administrador.findById(req.params.id);
     if (!admin) return res.status(404).json({ mensaje: "Administrador no encontrado" });
     res.json(admin);
   } catch (error) {
@@ -40,14 +41,14 @@ const consultaId = async (req, res, next) => {
 // Actualizar administrador
 const actualizar = async (req, res, next) => {
   try {
-    const id = req.params.id; // string
-    const { usuario, password } = req.body;
-
-    const admin = await Administrador.findById(id);
+    const admin = await Administrador.findById(req.params.id);
     if (!admin) return res.status(404).json({ mensaje: "Administrador no encontrado" });
+
+    const { usuario, password, rol } = req.body;
 
     if (usuario) admin.usuario = usuario;
     if (password && password.trim() !== "") admin.password = password;
+    if (rol) admin.rol = rol;
 
     await admin.save();
     res.json({ mensaje: "Administrador actualizado", admin });
@@ -60,8 +61,7 @@ const actualizar = async (req, res, next) => {
 // Eliminar administrador
 const eliminar = async (req, res, next) => {
   try {
-    const id = req.params.id; // string
-    const admin = await Administrador.findByIdAndDelete(id);
+    const admin = await Administrador.findByIdAndDelete(req.params.id);
     if (!admin) return res.status(404).json({ mensaje: "Administrador no encontrado" });
     res.json({ mensaje: "Administrador eliminado" });
   } catch (error) {
@@ -77,7 +77,6 @@ const login = async (req, res, next) => {
     const admin = await Administrador.findOne({ usuario });
     if (!admin) return res.status(404).json({ mensaje: "Usuario no encontrado" });
 
-    const bcrypt = await import("bcryptjs");
     const validPassword = await bcrypt.compare(password, admin.password);
     if (!validPassword) return res.status(400).json({ mensaje: "Contraseña incorrecta" });
 
@@ -102,11 +101,4 @@ const login = async (req, res, next) => {
   }
 };
 
-export {
-  crear,
-  consulta,
-  consultaId,
-  actualizar,
-  eliminar,
-  login,
-};
+export { crear, consulta, consultaId, actualizar, eliminar, login };

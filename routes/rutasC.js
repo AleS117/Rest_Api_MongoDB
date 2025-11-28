@@ -1,27 +1,14 @@
+// compradores.js
 import express from "express";
-import {
-  crear,
-  consulta,
-  consultaId,
-  actualizar,
-  eliminar,
-  comprasPorComprador,
-  comprasPorCompradorPorFecha
-} from "../controllers/apiC.js";
+import { crear, consulta, actualizar, eliminar } from "../controllers/apiCm.js";
+import { checkAuth } from "../middleware/checkkAuth.js";
+import { checkRole } from "../middleware/checkRole.js";
 
 const router = express.Router();
 
-// CRUD compras
-router.post("/crear", crear);
-router.get("/consulta", consulta);
-router.get("/consulta/:id", consultaId);
-router.put("/actualizar/:id", actualizar);
-router.delete("/eliminar/:id", eliminar);
-
-// Obtener compras de un comprador
-router.get("/comprador/:id", comprasPorComprador);
-
-// 🔹 Nuevo endpoint: compras de un comprador por fecha
-router.get("/por-comprador/:id/fecha/:fecha", comprasPorCompradorPorFecha);
+router.get("/consulta", checkAuth, checkRole(["ADMIN", "TRABAJADOR"]), consulta);
+router.post("/crear", checkAuth, checkRole(["ADMIN"]), crear);
+router.put("/actualizar/:id", checkAuth, checkRole(["ADMIN"]), actualizar);
+router.delete("/eliminar/:id", checkAuth, checkRole(["ADMIN"]), eliminar);
 
 export default router;

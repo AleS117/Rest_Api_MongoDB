@@ -1,29 +1,30 @@
+// controllers/apiT.js
 import { Tipo } from "../models/Tipo.js";
-import mongoose from "mongoose";
 
-// Crear nuevo tipo
+// Crear tipo
 const crear = async (req, res, next) => {
   try {
-    // Mongoose genera automáticamente ObjectId
     const tipo = new Tipo({ nombre: req.body.nombre });
     await tipo.save();
-    res.json(tipo); // devolvemos el tipo creado con su _id de Mongo
+    res.json(tipo);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
 
-// Consultar todos los tipos
+// Consultar todos
 const consulta = async (req, res, next) => {
   try {
     const tipos = await Tipo.find({});
     res.json(tipos);
   } catch (error) {
-    next(error);
+    console.log(error);
+    res.status(500).json({ mensaje: "No se pudieron cargar los tipos" });
   }
 };
 
-// Consultar tipo por _id
+// Consultar por ID
 const consultaId = async (req, res, next) => {
   try {
     const tipo = await Tipo.findById(req.params.id);
@@ -33,21 +34,17 @@ const consultaId = async (req, res, next) => {
   }
 };
 
-// Actualizar tipo
+// Actualizar
 const actualizar = async (req, res, next) => {
   try {
-    const tipo = await Tipo.findByIdAndUpdate(
-      req.params.id,
-      { nombre: req.body.nombre },
-      { new: true }
-    );
+    const tipo = await Tipo.findByIdAndUpdate(req.params.id, { nombre: req.body.nombre }, { new: true });
     res.json(tipo);
   } catch (error) {
     next(error);
   }
 };
 
-// Eliminar tipo
+// Eliminar
 const eliminar = async (req, res, next) => {
   try {
     await Tipo.findByIdAndDelete(req.params.id);
